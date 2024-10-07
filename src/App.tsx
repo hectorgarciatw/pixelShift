@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './components/Sidebar';
-import ImageDisplay from './components/ImageDisplay';
 import { FilterOptions, PresetFilter, presetFilters } from './types';
 import { Moon, Sun } from 'lucide-react';
+//Components
+import Sidebar from './components/Sidebar';
+import ImageDisplay from './components/ImageDisplay';
+import Footer from './components/Footer';
 
 const initialFilters: FilterOptions = presetFilters[0].settings;
 
@@ -53,6 +55,7 @@ function App() {
             <button onClick={toggleDarkMode} className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
                 {darkMode ? <Sun size={24} /> : <Moon size={24} />}
             </button>
+            <Footer />
         </div>
     );
 }
