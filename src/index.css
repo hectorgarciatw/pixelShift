@@ -24,3 +24,15 @@
     border-top: 20px solid #333;
     border-right: 20px solid transparent;
 }
+
+/* Estilos para el modo claro */
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Estilos para el modo oscuro */
+body.dark {
+    background-color: #1a202c;
+    color: #ffffff;
+}

@@ -10,6 +10,7 @@ export interface PresetFilter {
     settings: FilterOptions;
 }
 
+//Filtros minimalistas
 export const presetFilters: PresetFilter[] = [
     { name: 'Normal', settings: { brightness: 100, contrast: 100, saturation: 100, grayscale: 0 } },
     { name: 'Vintage', settings: { brightness: 120, contrast: 90, saturation: 85, grayscale: 30 } },

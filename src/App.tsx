@@ -12,6 +12,8 @@ const initialFilters: FilterOptions = presetFilters[0].settings;
 function App() {
     const [filters, setFilters] = useState<FilterOptions>(initialFilters);
     const [image, setImage] = useState<string | null>(null);
+    //Guardo el nombre original de la imagen
+    const [originalImageName, setOriginalImageName] = useState<string | null>(null);
     const [darkMode, setDarkMode] = useState(() => {
         const savedMode = localStorage.getItem('darkMode');
         return savedMode ? JSON.parse(savedMode) : false;
@@ -35,9 +37,11 @@ function App() {
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
+            setOriginalImageName(file.name);
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImage(reader.result as string);
+                //setOriginalImageName(file.name);
             };
             reader.readAsDataURL(file);
         }
@@ -52,9 +56,9 @@ function App() {
     };
 
     return (
-        <div className={`flex h-screen ${darkMode ? 'dark' : ''}`}>
+        <div className={`flex h-screen ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
             <Sidebar filters={filters} onFilterChange={handleFilterChange} onImageUpload={handleImageUpload} onPresetChange={handlePresetChange} presetFilters={presetFilters} />
-            <ImageDisplay filters={filters} image={image} />
+            <ImageDisplay filters={filters} image={image} originalImageName={originalImageName} />
             <button onClick={toggleDarkMode} className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
                 {darkMode ? <Sun size={24} /> : <Moon size={24} />}
             </button>

@@ -5,11 +5,13 @@ import { FilterOptions } from '../types';
 interface ImageDisplayProps {
     filters: FilterOptions;
     image: string | null;
+    originalImageName: string | null;
 }
 
-const ImageDisplay: React.FC<ImageDisplayProps> = ({ filters, image }) => {
+const ImageDisplay: React.FC<ImageDisplayProps> = ({ filters, image, originalImageName }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
+    //Renderizado de la imagen
     useEffect(() => {
         if (image && canvasRef.current) {
             const canvas = canvasRef.current;
@@ -25,23 +27,26 @@ const ImageDisplay: React.FC<ImageDisplayProps> = ({ filters, image }) => {
         }
     }, [image, filters]);
 
+    //Aplicación de los filtros minimalistas
     const applyFilters = (ctx: CanvasRenderingContext2D | null) => {
         if (ctx) {
             ctx.filter = `
-        brightness(${filters.brightness}%)
-        contrast(${filters.contrast}%)
-        saturate(${filters.saturation}%)
-        grayscale(${filters.grayscale}%)
-      `;
+                brightness(${filters.brightness}%)
+                contrast(${filters.contrast}%)
+                saturate(${filters.saturation}%)
+                grayscale(${filters.grayscale}%)
+            `;
             ctx.drawImage(ctx.canvas, 0, 0);
             ctx.filter = 'none';
         }
     };
 
+    //Descarga de la imagen procesada
     const handleDownload = () => {
         if (canvasRef.current) {
             const link = document.createElement('a');
-            link.download = 'filtered_image.png';
+            const imageName = originalImageName ? `${originalImageName}_bypixelshift.png` : 'image_by_pixelshift.png';
+            link.download = imageName;
             link.href = canvasRef.current.toDataURL();
             link.click();
         }

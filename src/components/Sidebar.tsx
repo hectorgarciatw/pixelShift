@@ -17,7 +17,7 @@ const Sidebar: React.FC<SidebarProps> = ({ filters, onFilterChange, onImageUploa
                 <Sliders className="mr-2" /> PixelShift
             </h2>
             <div className="mb-4">
-                <label className="flex items-center justify-center w-full px-4 py-2 bg-blue-500 text-white rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-600">
+                <label className="flex items-center justify-center w-full px-4 py-2 bg-blue-500 text-white rounded-lg shadow-lg tracking-wide border border-blue cursor-pointer hover:bg-blue-600">
                     <Upload className="mr-2" />
                     <span className="text-base leading-normal">Cargar imagen</span>
                     <input type="file" className="hidden" onChange={onImageUpload} accept="image/*" />
@@ -39,6 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ filters, onFilterChange, onImageUploa
                     ))}
                 </select>
             </div>
+            {/* Renderizado de los slider asociados a los filtros  */}
             {Object.entries(filters).map(([filterName, value]) => (
                 <div key={filterName} className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{filterName.charAt(0).toUpperCase() + filterName.slice(1)}</label>
