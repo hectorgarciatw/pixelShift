@@ -14,7 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({ filters, onFilterChange, onImageUploa
     return (
         <div className="w-64 bg-white dark:bg-gray-800 shadow-lg p-4 overflow-y-auto">
             <h2 className="text-xl font-bold mb-4 flex items-center text-gray-800 dark:text-white">
-                <Sliders className="mr-2" /> Filtros de imagen
+                <Sliders className="mr-2" /> PixelShift
             </h2>
             <div className="mb-4">
                 <label className="flex items-center justify-center w-full px-4 py-2 bg-blue-500 text-white rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-600">

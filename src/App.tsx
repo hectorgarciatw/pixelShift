@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FilterOptions, PresetFilter, presetFilters } from './types';
 import { Moon, Sun } from 'lucide-react';
+
 //Components
 import Sidebar from './components/Sidebar';
 import ImageDisplay from './components/ImageDisplay';
@@ -25,10 +26,12 @@ function App() {
         }
     }, [darkMode]);
 
+    //Actualizo los valores del filtro
     const handleFilterChange = (filterName: keyof FilterOptions, value: number) => {
         setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
     };
 
+    //Manejo la carga de la imagen subida por el usuario
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {

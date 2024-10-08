@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Footer() {
+const Footer: React.FC = () => {
     return (
         <p className="footer">
             Implementado por ☕️{' '}
@@ -9,6 +9,6 @@ function Footer() {
             </a>
         </p>
     );
-}
+};
 
 export default Footer;
